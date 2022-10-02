@@ -1,17 +1,10 @@
-:root {
+.list {
     --list-item-min: 180px;
     --list-item-font-size: 8.5vw;
-}
 
-.list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(var(--list-item-min), 1fr));
     user-select: none;
-}
-
-.item {
-    font-size: var(--list-item-font-size);
-    place-self: center;
 }
 
 @media (min-width: 1920px) {

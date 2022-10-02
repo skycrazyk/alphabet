@@ -1,18 +1,7 @@
-import s from './App.module.css'
-import {alphabet} from './alphabets'
+import {Alphabet} from './features/alphabet/Alphabet'
 
 function App() {
-    const sound = new Audio('/sounds/alphabet/А/bell.mp3')
-
-    return (
-        <div className={s.list}>
-            {alphabet.map(l => (
-                <div key={l.upper} className={s.item} onClick={() => sound.play()}>
-                    {l.upper}
-                </div>
-            ))}
-        </div>
-    )
+    return <Alphabet />
 }
 
 export default App
