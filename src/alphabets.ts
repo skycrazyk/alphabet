@@ -45,6 +45,10 @@ export const alphabet: Letter[] = [
         lower: 'и',
     },
     {
+        upper: 'Й',
+        lower: 'й',
+    },
+    {
         upper: 'К',
         lower: 'к',
     },
@@ -97,6 +101,10 @@ export const alphabet: Letter[] = [
         lower: 'ц',
     },
     {
+        upper: 'Ч',
+        lower: 'ч',
+    },
+    {
         upper: 'Ш',
         lower: 'ш',
     },
@@ -105,16 +113,16 @@ export const alphabet: Letter[] = [
         lower: 'щ',
     },
     {
-        upper: 'Ь',
-        lower: 'ь',
-    },
-    {
         upper: 'Ъ',
         lower: 'ъ',
     },
     {
         upper: 'Ы',
         lower: 'ы',
+    },
+    {
+        upper: 'Ь',
+        lower: 'ь',
     },
     {
         upper: 'Э',
