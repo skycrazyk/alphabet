@@ -64,27 +64,27 @@ export const alphabet: Letter[] = [
     {
         upper: 'К',
         lower: 'к',
-        words: [],
+        words: ['Карнотавр'],
     },
     {
         upper: 'Л',
         lower: 'л',
-        words: [],
+        words: ['Лесотозавр'],
     },
     {
         upper: 'М',
         lower: 'м',
-        words: [],
+        words: ['Мозазавр'],
     },
     {
         upper: 'Н',
         lower: 'н',
-        words: [],
+        words: ['Нотроних'],
     },
     {
         upper: 'О',
         lower: 'о',
-        words: [],
+        words: ['Орнитомим'],
     },
     {
         upper: 'П',
