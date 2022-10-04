@@ -94,12 +94,12 @@ export const alphabet: Letter[] = [
     {
         upper: 'Р',
         lower: 'р',
-        words: [],
+        words: ['Рамфоринх'],
     },
     {
         upper: 'С',
-        lower: 'с',
-        words: [],
+        lower: 'c',
+        words: ['Стигимолох'],
     },
     {
         upper: 'Т',
