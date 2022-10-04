@@ -8,23 +8,23 @@ export const alphabet: Letter[] = [
     {
         upper: 'А',
         lower: 'а',
-        words: ['Автобус'],
+        words: ['Анкилозавр', 'Автобус'],
     },
     {
         upper: 'Б',
         lower: 'б',
-        words: ['Барабан'],
+        words: ['Брахиозавр', 'Барабан'],
     },
     {
         upper: 'В',
         lower: 'в',
-        words: [],
+        words: ['Велоцераптор'],
     },
     {
         upper: 'Г',
         lower: 'г',
 
-        words: [],
+        words: ['Гастония'],
     },
     {
         upper: 'Д',
