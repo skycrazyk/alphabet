@@ -29,13 +29,12 @@ export const alphabet: Letter[] = [
     {
         upper: 'Д',
         lower: 'д',
-
-        words: [],
+        words: ['Диметродон'],
     },
     {
         upper: 'Е',
         lower: 'е',
-        words: [],
+        words: ['Египтозавр'],
     },
     {
         upper: 'Ё',
@@ -45,7 +44,7 @@ export const alphabet: Letter[] = [
     {
         upper: 'Ж',
         lower: 'ж',
-        words: [],
+        words: ['Жираффатитан'],
     },
     {
         upper: 'З',
@@ -55,7 +54,7 @@ export const alphabet: Letter[] = [
     {
         upper: 'И',
         lower: 'и',
-        words: [],
+        words: ['Ихтеозавр'],
     },
     {
         upper: 'Й',
