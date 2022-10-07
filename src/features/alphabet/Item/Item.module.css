@@ -1,4 +1,13 @@
 .item {
     font-size: var(--list-item-font-size);
-    place-self: center;
+    color: #086788;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.item:hover {
+    background-color: #f0c808;
 }
