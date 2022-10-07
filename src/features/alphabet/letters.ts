@@ -104,17 +104,17 @@ export const alphabet: Letter[] = [
     {
         upper: 'Т',
         lower: 'т',
-        words: [],
+        words: ['Трицератопс'],
     },
     {
         upper: 'У',
         lower: 'у',
-        words: [],
+        words: ['Уранозавр'],
     },
     {
         upper: 'Ф',
         lower: 'ф',
-        words: [],
+        words: ['Фалкарий'],
     },
     {
         upper: 'Х',
