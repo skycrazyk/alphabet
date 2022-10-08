@@ -39,7 +39,7 @@ export const alphabet: Letter[] = [
     {
         upper: 'Ё',
         lower: 'ё',
-        words: [],
+        words: ['Ёназавр'],
     },
     {
         upper: 'Ж',
@@ -59,7 +59,7 @@ export const alphabet: Letter[] = [
     {
         upper: 'Й',
         lower: 'й',
-        words: [],
+        words: ['Шувууйя'],
     },
     {
         upper: 'К',
@@ -89,7 +89,7 @@ export const alphabet: Letter[] = [
     {
         upper: 'П',
         lower: 'п',
-        words: [],
+        words: ['Патагатитан'],
     },
     {
         upper: 'Р',
@@ -139,7 +139,7 @@ export const alphabet: Letter[] = [
     {
         upper: 'Щ',
         lower: 'щ',
-        words: [],
+        words: ['Щютараптор'],
     },
     {
         upper: 'Ъ',
@@ -149,12 +149,12 @@ export const alphabet: Letter[] = [
     {
         upper: 'Ы',
         lower: 'ы',
-        words: [],
+        words: ['Мытазавр'],
     },
     {
         upper: 'Ь',
         lower: 'ь',
-        words: [],
+        words: ['Ваньнанозавр'],
     },
     {
         upper: 'Э',
