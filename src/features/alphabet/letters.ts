@@ -49,7 +49,7 @@ export const alphabet: Letter[] = [
     {
         upper: 'З',
         lower: 'з',
-        words: [],
+        words: ['Зауралоф'],
     },
     {
         upper: 'И',
@@ -129,7 +129,7 @@ export const alphabet: Letter[] = [
     {
         upper: 'Ч',
         lower: 'ч',
-        words: [],
+        words: ['Чуаньдуноцерур'],
     },
     {
         upper: 'Ш',
@@ -159,7 +159,7 @@ export const alphabet: Letter[] = [
     {
         upper: 'Э',
         lower: 'э',
-        words: [],
+        words: ['Эласмозавр'],
     },
     {
         upper: 'Ю',
