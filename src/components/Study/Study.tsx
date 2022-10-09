@@ -6,7 +6,7 @@ export function Study() {
     return (
         <div className={s.study}>
             <Preview />
-            <Alphabet />
+            {/* <Alphabet /> */}
         </div>
     )
 }
