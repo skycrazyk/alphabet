@@ -1,4 +1,4 @@
-import {Alphabet} from './features/alphabet/Alphabet'
+import {Alphabet} from '../Alphabet/Alphabet'
 
 function App() {
     return <Alphabet />

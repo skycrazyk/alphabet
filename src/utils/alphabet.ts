@@ -1,10 +1,10 @@
-export type Letter = {
+export type LetterType = {
     upper: string
     lower: string
     words: string[]
 }
 
-export const alphabet: Letter[] = [
+export const alphabet: LetterType[] = [
     {
         upper: 'А',
         lower: 'а',
