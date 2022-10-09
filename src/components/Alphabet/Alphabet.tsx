@@ -1,13 +1,15 @@
-import {alphabet, LetterType} from '../../utils/alphabet'
+import {LetterType} from '../../utils/alphabet'
 import s from './Alphabet.module.css'
 import {Letter} from './Letter/Letter'
 import cn from 'classnames'
 
 export function Alphabet({
+    alphabet,
     onLetterClick,
     alphabetClassName,
     letterClassName,
 }: {
+    alphabet: LetterType[]
     onLetterClick?: (letter: LetterType) => void
     alphabetClassName?: string
     letterClassName?: string
