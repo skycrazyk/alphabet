@@ -1,19 +1,7 @@
 .list {
-    --list-item-min: 180px;
-    --list-item-font-size: 8vw;
-
-    height: 100vh;
     font-family: 'Nunito Sans', sans-serif;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(var(--list-item-min), 1fr));
     align-items: stretch;
     justify-items: stretch;
     user-select: none;
-    background-color: #fff1d0;
-}
-
-@media (min-width: 1920px) {
-    .list {
-        grid-template-columns: repeat(auto-fill, minmax(calc(var(--list-item-min) * 1.35), 1fr));
-    }
 }
