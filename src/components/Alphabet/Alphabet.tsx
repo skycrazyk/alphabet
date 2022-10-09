@@ -5,6 +5,7 @@ import cn from 'classnames'
 
 export function Alphabet({
     alphabet,
+    activeLetter,
     onLetterClick,
     alphabetClassName,
     letterClassName,
@@ -13,6 +14,7 @@ export function Alphabet({
     onLetterClick?: (letter: LetterType) => void
     alphabetClassName?: string
     letterClassName?: string
+    activeLetter?: LetterType
 }) {
     // const [audio, setAudio] = useState<HTMLAudioElement>()
 
@@ -36,7 +38,7 @@ export function Alphabet({
                     key={l.upper}
                     letter={l}
                     onClick={onLetterClick}
-                    className={letterClassName}
+                    className={cn({[s.active]: activeLetter?.upper === l.upper}, letterClassName)}
                 />
             ))}
         </div>
