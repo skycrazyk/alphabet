@@ -1,5 +1,5 @@
-import {Dispatch, SetStateAction, useEffect, useState} from 'react'
-import {Navigation, Swiper as SwiperInstance} from 'swiper'
+import {Dispatch, SetStateAction, useEffect, useState, useCallback} from 'react'
+import {Navigation, Swiper as SwiperInstance, Keyboard} from 'swiper'
 import {Swiper, SwiperSlide} from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -18,18 +18,35 @@ export function Preview({
     setActiveLetter: Dispatch<SetStateAction<LetterType | undefined>>
 }) {
     const activeIndex = alphabet.indexOf(activeLetter as LetterType)
-
     const [swiper, setSwiper] = useState<SwiperInstance>()
 
     useEffect(() => {
-        if (activeIndex !== -1 && activeIndex !== swiper?.activeIndex) {
+        if (
+            activeIndex !== -1 &&
+            activeIndex !== swiper?.activeIndex &&
+            swiper?.destroyed !== true
+        ) {
             swiper?.slideTo(activeIndex)
         }
     }, [activeIndex, swiper])
 
+    const onSlideChange = useCallback(
+        (swipe: SwiperInstance) => {
+            setActiveLetter(alphabet[swipe.activeIndex])
+        },
+        [setActiveLetter, alphabet]
+    )
+
     return (
         <div>
-            <Swiper navigation modules={[Navigation]} className={s.preview} onSwiper={setSwiper}>
+            <Swiper
+                navigation
+                keyboard
+                modules={[Navigation, Keyboard]}
+                className={s.preview}
+                onSwiper={setSwiper}
+                onSlideChangeTransitionEnd={onSlideChange}
+            >
                 {alphabet.map(letter => (
                     <SwiperSlide className={s.slide} key={letter.lower}>
                         {({isActive, isVisible}) => (
