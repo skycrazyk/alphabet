@@ -11,3 +11,7 @@
 .item:hover {
     background-color: #f0c808;
 }
+
+.active {
+    background-color: #f0c808;
+}

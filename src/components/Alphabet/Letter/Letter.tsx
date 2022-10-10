@@ -7,10 +7,12 @@ export function Letter({
     letter,
     onClick,
     className,
+    isActive,
 }: {
     letter: LetterType
     onClick?: (letter: LetterType) => void
     className?: string
+    isActive?: boolean
 }) {
     // const audio = new Audio(`/sounds/alphabet/${letter.upper}/${letter.words[0]}.mp3`)
     const onClickHandler = useCallback(() => {
@@ -18,7 +20,7 @@ export function Letter({
     }, [letter, onClick])
 
     return (
-        <div className={cn(s.item, className)} onClick={onClickHandler}>
+        <div className={cn(s.item, {[s.active]: isActive}, className)} onClick={onClickHandler}>
             {letter.upper}
         </div>
     )

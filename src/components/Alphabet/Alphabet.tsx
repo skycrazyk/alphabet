@@ -38,7 +38,8 @@ export function Alphabet({
                     key={l.upper}
                     letter={l}
                     onClick={onLetterClick}
-                    className={cn({[s.active]: activeLetter?.upper === l.upper}, letterClassName)}
+                    className={letterClassName}
+                    isActive={activeLetter === l}
                 />
             ))}
         </div>
