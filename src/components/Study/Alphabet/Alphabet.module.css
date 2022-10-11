@@ -1,5 +1,5 @@
 .list {
-    --list-item-min: 100px;
+    --list-item-min: 10vw;
     --list-item-font-size: 5vw;
     height: 100vh;
     grid-template-columns: repeat(auto-fill, minmax(var(--list-item-min), 1fr));
