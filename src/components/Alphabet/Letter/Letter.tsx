@@ -14,7 +14,6 @@ export function Letter({
     className?: string
     isActive?: boolean
 }) {
-    // const audio = new Audio(`/sounds/alphabet/${letter.upper}/${letter.words[0]}.mp3`)
     const onClickHandler = useCallback(() => {
         onClick?.(letter)
     }, [letter, onClick])

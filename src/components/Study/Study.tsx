@@ -1,11 +1,16 @@
-import {useState} from 'react'
+import {useState, useRef, useCallback, useEffect} from 'react'
 import s from './Study.module.css'
 import {Alphabet} from './Alphabet/Alphabet'
 import {Preview} from './Preview/Preview'
-import {alphabet, LetterType} from '../../utils'
+import {alphabet, LetterType, getWordDataPath} from '../../utils'
 
 export function Study() {
     const [activeLetter, setActiveLetter] = useState<LetterType>()
+    const audio = useRef<HTMLAudioElement>(null)
+
+    const onSlideChangeTransitionEnd = useCallback(() => {
+        audio.current?.play()
+    }, [])
 
     return (
         <div className={s.study}>
@@ -13,18 +18,18 @@ export function Study() {
                 alphabet={alphabet}
                 activeLetter={activeLetter}
                 setActiveLetter={setActiveLetter}
+                onSlideChangeTransitionEnd={onSlideChangeTransitionEnd}
             />
             <Alphabet
                 alphabet={alphabet}
                 activeLetter={activeLetter}
                 setActiveLetter={setActiveLetter}
             />
-            <audio>
-                <source
-                    src={`/sounds/alphabet/${activeLetter?.upper}/${activeLetter?.words[0]}.mp3`}
-                    type="audio/mpeg"
-                />
-            </audio>
+            <audio
+                ref={audio}
+                preload="auto"
+                src={getWordDataPath(activeLetter?.upper, `${activeLetter?.words[0]}.mp3`)}
+            />
         </div>
     )
 }

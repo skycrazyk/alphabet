@@ -16,21 +16,6 @@ export function Alphabet({
     letterClassName?: string
     activeLetter?: LetterType
 }) {
-    // const [audio, setAudio] = useState<HTMLAudioElement>()
-
-    // const onLetterClick = useCallback((letterAudio: HTMLAudioElement) => {
-    //     setAudio(current => {
-    //         current?.pause()
-    //         return letterAudio
-    //     })
-    // }, [])
-
-    // useEffect(() => {
-    //     if (!audio) return
-    //     audio.currentTime = 0
-    //     audio.play()
-    // }, [audio])
-
     return (
         <div className={cn(s.list, alphabetClassName)}>
             {alphabet.map(l => (

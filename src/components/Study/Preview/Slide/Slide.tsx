@@ -10,5 +10,11 @@ export function Slide({
     isVisible: boolean
     isActive: boolean
 }) {
-    return <div className={s.upper}>{letter.upper}</div>
+    return (
+        <div>
+            <div className={s.upper}>{letter.upper}</div>
+            <div className={s.word}>{letter.words[0]}</div>
+            {/* <div className={s.image}></div> */}
+        </div>
+    )
 }

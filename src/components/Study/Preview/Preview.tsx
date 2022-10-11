@@ -1,6 +1,6 @@
 import {Dispatch, SetStateAction, useEffect, useState, useCallback} from 'react'
 import {Navigation, Swiper as SwiperInstance, Keyboard} from 'swiper'
-import {Swiper, SwiperSlide} from 'swiper/react'
+import {Swiper, SwiperSlide, SwiperProps} from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
@@ -12,10 +12,12 @@ export function Preview({
     alphabet,
     activeLetter,
     setActiveLetter,
+    onSlideChangeTransitionEnd,
 }: {
     alphabet: LetterType[]
     activeLetter: LetterType | undefined
     setActiveLetter: Dispatch<SetStateAction<LetterType | undefined>>
+    onSlideChangeTransitionEnd: SwiperProps['onSlideChangeTransitionEnd']
 }) {
     const activeIndex = alphabet.indexOf(activeLetter as LetterType)
     const [swiper, setSwiper] = useState<SwiperInstance>()
@@ -45,7 +47,8 @@ export function Preview({
                 modules={[Navigation, Keyboard]}
                 className={s.preview}
                 onSwiper={setSwiper}
-                onSlideChangeTransitionEnd={onSlideChange}
+                onSlideChange={onSlideChange}
+                onSlideChangeTransitionEnd={onSlideChangeTransitionEnd}
             >
                 {alphabet.map(letter => (
                     <SwiperSlide className={s.slide} key={letter.lower}>
