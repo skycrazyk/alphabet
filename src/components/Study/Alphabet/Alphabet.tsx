@@ -1,6 +1,7 @@
 import {Dispatch, SetStateAction} from 'react'
 import {Alphabet as AlphabetComponent} from '../../Alphabet/Alphabet'
 import {LetterType} from '../../../utils'
+import s from './Alphabet.module.css'
 
 export function Alphabet({
     alphabet,
@@ -16,6 +17,8 @@ export function Alphabet({
             alphabet={alphabet}
             onLetterClick={setActiveLetter}
             activeLetter={activeLetter}
+            alphabetClassName={s.list}
+            letterClassName={s.item}
         />
     )
 }
