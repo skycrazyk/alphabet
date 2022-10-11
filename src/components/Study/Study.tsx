@@ -1,4 +1,4 @@
-import {useState, useRef, useCallback, useEffect} from 'react'
+import {useState, useRef, useCallback} from 'react'
 import s from './Study.module.css'
 import {Alphabet} from './Alphabet/Alphabet'
 import {Preview} from './Preview/Preview'

@@ -1,4 +1,4 @@
-import {LetterType} from '../../../../utils'
+import {LetterType, getWordDataPath} from '../../../../utils'
 import s from './Slide.module.css'
 
 export function Slide({
@@ -14,7 +14,10 @@ export function Slide({
         <div>
             <div className={s.upper}>{letter.upper}</div>
             <div className={s.word}>{letter.words[0]}</div>
-            {/* <div className={s.image}></div> */}
+            <div className={s.image}>
+                {/* eslint-disable-next-line jsx-a11y/alt-text */}
+                <img src={getWordDataPath(letter.upper, `${letter.words[0]}.webp`)} />
+            </div>
         </div>
     )
 }

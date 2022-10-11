@@ -11,3 +11,7 @@
     font-family: 'Nunito Sans', sans-serif;
     font-size: 3rem;
 }
+
+.image img {
+    max-width: 100%;
+}
