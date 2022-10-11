@@ -11,7 +11,7 @@ export function Slide({
     isActive: boolean
 }) {
     return (
-        <div>
+        <div className={s.slide}>
             <div className={s.upper}>{letter.upper}</div>
             <div className={s.word}>{letter.words[0]}</div>
             <div className={s.image}>

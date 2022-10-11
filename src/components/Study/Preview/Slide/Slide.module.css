@@ -1,17 +1,29 @@
 .slide {
     height: 100%;
+    padding: 1vw;
 }
 
 .upper {
     font-family: 'Nunito Sans', sans-serif;
-    font-size: 5rem;
+    font-size: 13vw;
+    line-height: 1;
+    text-align: center;
 }
 
 .word {
     font-family: 'Nunito Sans', sans-serif;
-    font-size: 3rem;
+    font-size: 4vw;
+    text-align: center;
+}
+
+.image {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    margin-top: 3vw;
 }
 
 .image img {
-    max-width: 100%;
+    width: 100%;
+    max-width: 480px;
 }
