@@ -89,7 +89,7 @@ export const alphabet: LetterType[] = [
     {
         upper: 'П',
         lower: 'п',
-        words: ['Патагатитан'],
+        words: ['Патаготитан'],
     },
     {
         upper: 'Р',
