@@ -16,7 +16,7 @@ export function Preview({
 }: {
     alphabet: LetterType[]
     activeLetter: LetterType | undefined
-    setActiveLetter: Dispatch<SetStateAction<LetterType | undefined>>
+    setActiveLetter: Dispatch<SetStateAction<LetterType>>
     onSlideChangeTransitionEnd: SwiperProps['onSlideChangeTransitionEnd']
 }) {
     const activeIndex = alphabet.indexOf(activeLetter as LetterType)

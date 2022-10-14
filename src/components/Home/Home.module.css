@@ -1,0 +1,16 @@
+.home {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.start {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 8vw;
+    background-color: var(--warm-color);
+    color: var(--main-color);
+    border: none;
+    padding: 5vw 10vw;
+    border-radius: 20vw;
+}

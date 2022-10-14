@@ -10,7 +10,7 @@ export function Alphabet({
 }: {
     alphabet: LetterType[]
     activeLetter: LetterType | undefined
-    setActiveLetter: Dispatch<SetStateAction<LetterType | undefined>>
+    setActiveLetter: Dispatch<SetStateAction<LetterType>>
 }) {
     return (
         <AlphabetComponent

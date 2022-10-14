@@ -1,3 +1,12 @@
+:root {
+    --main-color: #264653;
+    --second-color: #2a9d8f;
+    --background-color: #fff1d0;
+    --select-color: #f0c808;
+    --warm-color: #e76f51;
+}
+
 body {
-    background-color: #fff1d0;
+    background-color: var(--background-color);
+    color: var(--main-color);
 }

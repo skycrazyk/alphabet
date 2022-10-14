@@ -1,6 +1,6 @@
 .item {
     font-size: var(--list-item-font-size);
-    color: #086788;
+    color: var(--main-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,9 +9,9 @@
 }
 
 .item:hover {
-    background-color: #f0c808;
+    background-color: var(--select-color);
 }
 
 .active {
-    background-color: #f0c808;
+    background-color: var(--select-color);
 }

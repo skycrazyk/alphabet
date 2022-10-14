@@ -1,14 +1,18 @@
-import {useState, useRef, useCallback} from 'react'
+import {useState, useRef, useCallback, useEffect} from 'react'
 import s from './Study.module.css'
 import {Alphabet} from './Alphabet/Alphabet'
 import {Preview} from './Preview/Preview'
 import {alphabet, LetterType, getWordDataPath} from '../../utils'
 
 export function Study() {
-    const [activeLetter, setActiveLetter] = useState<LetterType>()
+    const [activeLetter, setActiveLetter] = useState<LetterType>(alphabet[0])
     const audio = useRef<HTMLAudioElement>(null)
 
     const onSlideChangeTransitionEnd = useCallback(() => {
+        audio.current?.play()
+    }, [])
+
+    useEffect(() => {
         audio.current?.play()
     }, [])
 
