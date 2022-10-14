@@ -40,7 +40,7 @@ export function Preview({
     )
 
     return (
-        <div>
+        <div className={s.wrap}>
             <Swiper
                 navigation
                 keyboard

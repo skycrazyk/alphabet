@@ -1,29 +1,51 @@
 .slide {
     height: 100%;
-    padding: 1vw;
+    display: grid;
+    grid-template-rows: 40% 10% 50%;
 }
 
 .upper {
     font-family: 'Nunito Sans', sans-serif;
-    font-size: 16vw;
-    line-height: 1.18;
-    text-align: center;
+    font-size: 30vh;
+    line-height: 1;
+    display: grid;
+    justify-items: center;
+    align-items: center;
 }
 
 .word {
     font-family: 'Nunito Sans', sans-serif;
-    font-size: 4vw;
+    font-size: 6vh;
+    line-height: 1;
     text-align: center;
+}
+
+.word::first-letter {
+    color: var(--warm-color);
 }
 
 .image {
     display: grid;
-    align-items: center;
+    align-items: start;
     justify-items: center;
-    margin-top: 3vw;
 }
 
 .image img {
     width: 100%;
-    max-width: 480px;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+@media (min-width: 1366px) {
+    .image img {
+        max-width: 480px;
+        max-height: 360px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .image img {
+        max-width: 640px;
+        max-height: 480px;
+    }
 }
