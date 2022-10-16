@@ -3,6 +3,7 @@ import s from './Study.module.css'
 import {Alphabet} from './Alphabet/Alphabet'
 import {Preview} from './Preview/Preview'
 import {alphabet, LetterType, getWordDataPath} from '../../utils'
+import {OnLetterClick} from '../Alphabet/Alphabet'
 
 export function Study() {
     const [activeLetter, setActiveLetter] = useState<LetterType>(alphabet[0])
@@ -16,6 +17,22 @@ export function Study() {
         audio.current?.play()
     }, [])
 
+    const onLetterClick: OnLetterClick = useCallback(
+        letter => {
+            const a = audio.current
+
+            if (!a) return
+
+            if (letter === activeLetter) {
+                a.currentTime = 0
+                a.play()
+            } else {
+                setActiveLetter(letter)
+            }
+        },
+        [activeLetter]
+    )
+
     return (
         <div className={s.study}>
             <Preview
@@ -27,7 +44,7 @@ export function Study() {
             <Alphabet
                 alphabet={alphabet}
                 activeLetter={activeLetter}
-                setActiveLetter={setActiveLetter}
+                onLetterClick={onLetterClick}
             />
             <audio
                 ref={audio}

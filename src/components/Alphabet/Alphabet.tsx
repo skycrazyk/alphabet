@@ -3,6 +3,8 @@ import s from './Alphabet.module.css'
 import {Letter} from './Letter/Letter'
 import cn from 'classnames'
 
+export type OnLetterClick = (letter: LetterType) => void
+
 export function Alphabet({
     alphabet,
     activeLetter,
@@ -11,7 +13,7 @@ export function Alphabet({
     letterClassName,
 }: {
     alphabet: LetterType[]
-    onLetterClick?: (letter: LetterType) => void
+    onLetterClick?: OnLetterClick
     alphabetClassName?: string
     letterClassName?: string
     activeLetter?: LetterType

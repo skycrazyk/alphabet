@@ -1,21 +1,20 @@
-import {Dispatch, SetStateAction} from 'react'
-import {Alphabet as AlphabetComponent} from '../../Alphabet/Alphabet'
+import {Alphabet as AlphabetComponent, OnLetterClick} from '../../Alphabet/Alphabet'
 import {LetterType} from '../../../utils'
 import s from './Alphabet.module.css'
 
 export function Alphabet({
     alphabet,
     activeLetter,
-    setActiveLetter,
+    onLetterClick,
 }: {
     alphabet: LetterType[]
     activeLetter: LetterType | undefined
-    setActiveLetter: Dispatch<SetStateAction<LetterType>>
+    onLetterClick: OnLetterClick
 }) {
     return (
         <AlphabetComponent
             alphabet={alphabet}
-            onLetterClick={setActiveLetter}
+            onLetterClick={onLetterClick}
             activeLetter={activeLetter}
             alphabetClassName={s.list}
             letterClassName={s.item}
