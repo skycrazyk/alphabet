@@ -28,7 +28,7 @@
     text-align: center;
 }
 
-.word::first-letter {
+.active {
     color: var(--warm-color);
 }
 

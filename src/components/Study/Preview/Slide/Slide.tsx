@@ -1,3 +1,4 @@
+import cn from 'classnames'
 import {LetterType, getWordDataPath} from '../../../../utils'
 import s from './Slide.module.css'
 
@@ -14,6 +15,8 @@ export function Slide({
     isActive: boolean
     onLetterClick: OnLetterClick
 }) {
+    const word = letter.words[0]?.split('')
+    const firstEntranceIdx = word?.findIndex(l => l.toUpperCase() === letter.upper)
     return (
         <div className={s.slide}>
             <div className={s.upper}>
@@ -21,7 +24,13 @@ export function Slide({
                     {letter.upper}
                 </button>
             </div>
-            <div className={s.word}>{letter.words[0]}</div>
+            <div className={s.word}>
+                {word?.map((l, idx) => (
+                    <span key={`${l}${idx}`} className={cn({[s.active]: idx === firstEntranceIdx})}>
+                        {l}
+                    </span>
+                ))}
+            </div>
             <div className={s.image}>
                 <img src={getWordDataPath(letter.upper, `${letter.words[0]}.webp`)} />
             </div>
