@@ -23,7 +23,6 @@ export const alphabet: LetterType[] = [
     {
         upper: 'Г',
         lower: 'г',
-
         words: ['Гастония'],
     },
     {
@@ -139,12 +138,12 @@ export const alphabet: LetterType[] = [
     {
         upper: 'Щ',
         lower: 'щ',
-        words: ['Щютараптор'],
+        words: ['Щуказавр'],
     },
     {
         upper: 'Ъ',
         lower: 'ъ',
-        words: [],
+        words: ['Къянтозавр'],
     },
     {
         upper: 'Ы',
