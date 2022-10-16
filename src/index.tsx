@@ -2,7 +2,7 @@ import React from 'react'
 import 'normalize.css'
 import {createRoot} from 'react-dom/client'
 import {Provider} from 'react-redux'
-import {BrowserRouter} from 'react-router-dom'
+import {HashRouter} from 'react-router-dom'
 import {store} from './store/store'
 import App from './components/App'
 import reportWebVitals from './reportWebVitals'
@@ -13,11 +13,11 @@ const root = createRoot(container)
 
 root.render(
     <React.StrictMode>
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <HashRouter>
             <Provider store={store}>
                 <App />
             </Provider>
-        </BrowserRouter>
+        </HashRouter>
     </React.StrictMode>
 )
 
