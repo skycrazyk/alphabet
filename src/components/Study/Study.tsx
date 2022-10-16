@@ -40,6 +40,7 @@ export function Study() {
                 activeLetter={activeLetter}
                 setActiveLetter={setActiveLetter}
                 onSlideChangeTransitionEnd={onSlideChangeTransitionEnd}
+                onLetterClick={onLetterClick}
             />
             <Alphabet
                 alphabet={alphabet}

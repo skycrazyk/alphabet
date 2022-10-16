@@ -6,18 +6,20 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import s from './Preview.module.css'
 import {LetterType} from '../../../utils'
-import {Slide} from './Slide/Slide'
+import {OnLetterClick, Slide} from './Slide/Slide'
 
 export function Preview({
     alphabet,
     activeLetter,
     setActiveLetter,
     onSlideChangeTransitionEnd,
+    onLetterClick,
 }: {
     alphabet: LetterType[]
     activeLetter: LetterType | undefined
     setActiveLetter: Dispatch<SetStateAction<LetterType>>
     onSlideChangeTransitionEnd: SwiperProps['onSlideChangeTransitionEnd']
+    onLetterClick: OnLetterClick
 }) {
     const activeIndex = alphabet.indexOf(activeLetter as LetterType)
     const [swiper, setSwiper] = useState<SwiperInstance>()
@@ -53,7 +55,12 @@ export function Preview({
                 {alphabet.map(letter => (
                     <SwiperSlide className={s.slide} key={letter.lower}>
                         {({isActive, isVisible}) => (
-                            <Slide letter={letter} isActive={isActive} isVisible={isVisible} />
+                            <Slide
+                                letter={letter}
+                                onLetterClick={onLetterClick}
+                                isActive={isActive}
+                                isVisible={isVisible}
+                            />
                         )}
                     </SwiperSlide>
                 ))}
