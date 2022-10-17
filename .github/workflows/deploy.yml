@@ -26,3 +26,15 @@ jobs:
       run: |
         npm install
         CI= npm run build
+    
+    - name: Upload ftp
+      uses: sebastianpopp/ftp-action@releases/v2
+      with:
+        host: ${{ secrets.FTP_SERVER }}
+        user: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        localDir: "build"
+        remoteDir: "russian-alphabet"
+        options: "--delete --asci"
+
+   
