@@ -8,3 +8,7 @@ RewriteRule ^ - [L]
 # Rewrite everything else to index.html to allow html5 state links
 RewriteRule ^ index.html [L]
 </IfModule>
+
+# проблема:
+# https://babyspot.ru/apps/russian-alphabet редиректит на http://babyspot.ru/apps/russian-alphabet/
+# статья по теме https://www.danielmorell.com/guides/htaccess-seo/redirects/https-www-and-trailing-slash
