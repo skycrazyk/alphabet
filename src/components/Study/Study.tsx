@@ -7,14 +7,25 @@ import {OnLetterClick} from '../Alphabet/Alphabet'
 import {generatePath, useNavigate, useParams} from 'react-router-dom'
 
 export function Study() {
-    const {letter: upper} = useParams()
+    const {letter: upper} = useParams<{letter: string}>()
     const letter = alphabet.find(l => l.upper === upper)
     const [activeLetter, setActiveLetter] = useState<LetterType>(letter || alphabet[0])
     const navigate = useNavigate()
 
     useEffect(() => {
-        navigate(generatePath(routes.abc, {letter: activeLetter.upper}))
-    }, [activeLetter, navigate])
+        if (activeLetter.upper !== upper) {
+            navigate(generatePath(routes.abc, {letter: activeLetter.upper}))
+        }
+    }, [activeLetter])
+
+    useEffect(() => {
+        if (activeLetter.upper !== upper) {
+            const nextLetter = alphabet.find(l => l.upper === upper)
+            if (nextLetter) {
+                setActiveLetter(nextLetter)
+            }
+        }
+    }, [upper])
 
     const audio = useRef<HTMLAudioElement>(null)
 
