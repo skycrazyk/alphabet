@@ -1,5 +1,5 @@
 .list {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: var(--main-font);
     display: grid;
     align-items: stretch;
     justify-items: stretch;

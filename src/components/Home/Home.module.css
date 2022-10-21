@@ -28,7 +28,7 @@
 }
 
 .btn {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: var(--main-font);
     font-size: 6vw;
     color: var(--main-color);
     border: none;

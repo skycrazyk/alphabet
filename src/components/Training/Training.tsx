@@ -1,7 +1,12 @@
-import {Alphabet} from '../Alphabet/Alphabet'
-import {alphabet} from '../../utils'
 import s from './Training.module.css'
+import {Alphabet} from './Alphabet/Alphabet'
+import {Accept} from './Accept/Accept'
 
 export function Training() {
-    return <Alphabet alphabetClassName={s.list} letterClassName={s.item} alphabet={alphabet} />
+    return (
+        <div className={s.wrap}>
+            <Alphabet />
+            <Accept />
+        </div>
+    )
 }
