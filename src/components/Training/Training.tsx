@@ -1,7 +1,7 @@
 import {Alphabet} from '../Alphabet/Alphabet'
 import {alphabet} from '../../utils'
-import s from './FullScreenAlphabet.module.css'
+import s from './Training.module.css'
 
-export function FullScreenAlphabet() {
+export function Training() {
     return <Alphabet alphabetClassName={s.list} letterClassName={s.item} alphabet={alphabet} />
 }

@@ -1,5 +1,5 @@
 import {Routes, Route} from 'react-router-dom'
-// import {FullScreenAlphabet} from '../FullScreenAlphabet/FullScreenAlphabet'
+import {Training} from '../Training/Training'
 import {Study} from '../Study/Study'
 import {Home} from '../Home/Home'
 
@@ -9,7 +9,7 @@ function App() {
             <Route path="/">
                 <Route index element={<Home />} />
                 <Route path="abc/:letter" element={<Study />} />
-                {/* <Route path="fs" element={<FullScreenAlphabet />} /> */}
+                <Route path="train/:letter" element={<Training />} />
             </Route>
         </Routes>
     )

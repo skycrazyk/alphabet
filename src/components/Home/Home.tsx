@@ -15,7 +15,9 @@ export function Home() {
                     Знакомство
                 </button>
                 <button
-                    onClick={() => navigate(generatePath(routes.abc, {letter: alphabet[0].upper}))}
+                    onClick={() =>
+                        navigate(generatePath(routes.train, {letter: alphabet[0].upper}))
+                    }
                     className={cn(s.training, s.btn)}
                 >
                     Тренировка
