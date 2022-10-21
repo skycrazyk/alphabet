@@ -5,12 +5,35 @@
     height: 100vh;
 }
 
+.menu {
+    display: grid;
+    justify-items: center;
+}
+
 .start {
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 8vw;
     background-color: var(--warm-color);
+    margin-bottom: 5vw;
+}
+
+.start:hover {
+    box-shadow: 0 0 5vw var(--warm-color);
+}
+
+.training {
+    background-color: var(--second-color);
+}
+
+.training:hover {
+    box-shadow: 0 0 5vw var(--second-color);
+}
+
+.btn {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 6vw;
     color: var(--main-color);
     border: none;
     padding: 5vw 10vw;
     border-radius: 20vw;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
 }
