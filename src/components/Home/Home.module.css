@@ -10,31 +10,42 @@
     justify-items: center;
 }
 
-.start {
+.alphabet {
     background-color: var(--warm-color);
-    margin-bottom: 5vw;
 }
 
-.start:hover {
+.alphabet:hover {
     box-shadow: 0 0 5vw var(--warm-color);
 }
 
-.training {
+.findLetter {
+    background-color: var(--select-color);
+}
+
+.findLetter:hover {
+    box-shadow: 0 0 5vw var(--select-color);
+}
+
+.firstLetter {
     background-color: var(--second-color);
 }
 
-.training:hover {
+.firstLetter:hover {
     box-shadow: 0 0 5vw var(--second-color);
 }
 
 .btn {
     font-family: var(--main-font);
-    font-size: 6vw;
+    font-size: 5vw;
     color: var(--main-color);
     border: none;
-    padding: 5vw 10vw;
+    padding: 4vw 5vw;
     border-radius: 20vw;
     cursor: pointer;
     transition: box-shadow 0.3s;
-    width: 60vw;
+    width: 55vw;
+}
+
+.btn:not(:last-child) {
+    margin-bottom: 3vw;
 }

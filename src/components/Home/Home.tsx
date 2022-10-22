@@ -10,17 +10,25 @@ export function Home() {
             <div className={s.menu}>
                 <button
                     onClick={() => navigate(generatePath(routes.abc, {letter: alphabet[0].upper}))}
-                    className={cn(s.start, s.btn)}
+                    className={cn(s.alphabet, s.btn)}
                 >
-                    Знакомство
+                    Алфавит
                 </button>
                 <button
                     onClick={() =>
                         navigate(generatePath(routes.train, {letter: alphabet[0].upper}))
                     }
-                    className={cn(s.training, s.btn)}
+                    className={cn(s.findLetter, s.btn)}
                 >
-                    Тренировка
+                    Найди букву
+                </button>
+                <button
+                    onClick={() =>
+                        navigate(generatePath(routes.train, {letter: alphabet[0].upper}))
+                    }
+                    className={cn(s.firstLetter, s.btn)}
+                >
+                    Первая буква
                 </button>
             </div>
         </div>
