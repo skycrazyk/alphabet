@@ -1,3 +1,4 @@
 export * from './alphabet'
-export * from './getWordDataPath'
+export * from './getStaticPath'
+export * from './getLetterPath'
 export * from './routes'

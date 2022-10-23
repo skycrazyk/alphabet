@@ -9,7 +9,7 @@ export function Alphabet() {
     const selectedLetter = useAppSelector(training.selectSelectedLetter)
     const dispatch = useAppDispatch()
     const onLetterClick = useCallback(
-        (letter: LetterType) => dispatch(training.setSelectLetter(letter)),
+        (letter: LetterType) => dispatch(training.setSelectedLetter(letter)),
         [dispatch]
     )
 

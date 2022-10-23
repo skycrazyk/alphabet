@@ -2,7 +2,7 @@ import {useState, useRef, useCallback, useEffect} from 'react'
 import s from './Study.module.css'
 import {Alphabet} from './Alphabet/Alphabet'
 import {Preview} from './Preview/Preview'
-import {alphabet, LetterType, getWordDataPath, routes} from '../../utils'
+import {alphabet, LetterType, getLetterPath, routes} from '../../utils'
 import {OnLetterClick} from '../Alphabet/Alphabet'
 import {generatePath, useNavigate, useParams} from 'react-router-dom'
 
@@ -70,7 +70,7 @@ export function Study() {
             <audio
                 ref={audio}
                 preload="auto"
-                src={getWordDataPath(activeLetter?.upper, `${activeLetter?.words[0]}.mp3`)}
+                src={getLetterPath(activeLetter?.upper, `${activeLetter?.words[0]}.mp3`)}
             />
         </div>
     )

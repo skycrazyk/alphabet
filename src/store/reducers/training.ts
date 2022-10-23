@@ -62,18 +62,18 @@ export const trainingSlice = createSlice({
             } else {
                 this.mistake(state)
             }
-            this.resetSelectLetter(state)
+            this.resetSelectedLetter(state)
         },
-        setSelectLetter(state, action: PayloadAction<LetterType>) {
+        setSelectedLetter(state, action: PayloadAction<LetterType>) {
             state.selectedLetter = action.payload
         },
-        resetSelectLetter(state) {
+        resetSelectedLetter(state) {
             state.selectedLetter = undefined
         },
     },
 })
 
-export const {mistake, init, next, check, setSelectLetter, resetSelectLetter} =
+export const {mistake, init, next, check, setSelectedLetter, resetSelectedLetter} =
     trainingSlice.actions
 
 export const selectProgress = createSelector(
@@ -118,4 +118,9 @@ export const selectAlphabet = createSelector(
 export const selectSelectedLetter = createSelector(
     (state: RootState) => state.training.selectedLetter,
     selectedLetter => selectedLetter
+)
+
+export const selectActiveLetter = createSelector(
+    (state: RootState) => state.training.activeLetter,
+    activeLetter => activeLetter
 )

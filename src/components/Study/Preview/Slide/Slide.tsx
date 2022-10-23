@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import {LetterType, getWordDataPath} from '../../../../utils'
+import {LetterType, getLetterPath} from '../../../../utils'
 import s from './Slide.module.css'
 
 export type OnLetterClick = (letter: LetterType) => void
@@ -32,7 +32,7 @@ export function Slide({
                 ))}
             </div>
             <div className={s.image}>
-                <img src={getWordDataPath(letter.upper, `${letter.words[0]}.webp`)} />
+                <img src={getLetterPath(letter.upper, `${letter.words[0]}.webp`)} />
             </div>
         </div>
     )
