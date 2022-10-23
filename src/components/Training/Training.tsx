@@ -15,12 +15,22 @@ export function Training() {
     const dispatch = useAppDispatch()
 
     const playQuestion = useCallback(async () => {
+        const questionRef = questionAudioRef.current
+        const activeLetterRef = activeLetterAudioRef.current
+
+        if (!questionRef || !activeLetterRef) return
+
         const onEnded = () => {
-            questionAudioRef.current?.removeEventListener('ended', onEnded)
-            activeLetterAudioRef.current?.play()
+            questionRef.removeEventListener('ended', onEnded)
+            activeLetterRef.play()
         }
-        questionAudioRef.current?.addEventListener('ended', onEnded)
-        questionAudioRef.current?.play()
+
+        questionRef.pause()
+        questionRef.currentTime = 0
+        activeLetterRef.pause()
+        activeLetterRef.currentTime = 0
+        questionRef.addEventListener('ended', onEnded)
+        questionRef.play()
     }, [])
 
     useEffect(() => {
