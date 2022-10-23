@@ -11,11 +11,13 @@ export function Alphabet({
     onLetterClick,
     alphabetClassName,
     letterClassName,
+    letterClassNameActive,
 }: {
     alphabet: LetterType[]
     onLetterClick?: OnLetterClick
     alphabetClassName?: string
     letterClassName?: string
+    letterClassNameActive?: string
     activeLetter?: LetterType
 }) {
     return (
@@ -26,6 +28,7 @@ export function Alphabet({
                     letter={l}
                     onClick={onLetterClick}
                     className={letterClassName}
+                    classNameActive={letterClassNameActive}
                     isActive={activeLetter === l}
                 />
             ))}

@@ -1,4 +1,4 @@
-import {createSlice, PayloadAction, createSelector} from '@reduxjs/toolkit'
+import {createSlice, PayloadAction, createSelector, original} from '@reduxjs/toolkit'
 import type {LetterType} from '../../utils'
 import type {RootState} from '../store'
 
@@ -22,6 +22,40 @@ const initialState: Training = {
     alphabet: [],
 }
 
+const redusers = {
+    next(state: Training) {
+        const origState = original(state)
+        const activeIndex = origState!.alphabet.indexOf(origState!.activeLetter!)
+
+        if (activeIndex === -1) return
+
+        if (activeIndex === origState!.alphabet.length - 1) {
+            state.finish = true
+            return
+        }
+
+        state.activeLetter = origState!.alphabet[activeIndex + 1]
+    },
+    mistake(state: Training) {
+        const origState = original(state)
+        const activeIndex = origState!.alphabet.indexOf(origState!.activeLetter!)
+
+        if (activeIndex === -1) return
+
+        const activeStep = state.progress[activeIndex] || {mistakes: 0}
+
+        activeStep.mistakes += 1
+        state.progress[activeIndex] = activeStep
+
+        if (activeStep.mistakes <= state.errorsMaxCount) return
+
+        redusers.next(state)
+    },
+    resetSelectedLetter(state: Training) {
+        state.selectedLetter = undefined
+    },
+}
+
 export const trainingSlice = createSlice({
     name: 'training',
     initialState,
@@ -30,46 +64,21 @@ export const trainingSlice = createSlice({
             state.alphabet = action.payload
             state.activeLetter = action.payload[0]
         },
-        next(state) {
-            const activeIndex = state.alphabet.indexOf(state.activeLetter!)
-
-            if (activeIndex === -1) return
-
-            if (activeIndex === state.alphabet.length - 1) {
-                state.finish = true
-                return
-            }
-
-            state.activeLetter = state.alphabet[activeIndex + 1]
-        },
-        mistake(state) {
-            const activeIndex = state.alphabet.indexOf(state.activeLetter!)
-
-            if (activeIndex === -1) return
-
-            const activeStep = state.progress[activeIndex] || {mistakes: 0}
-
-            activeStep.mistakes += 1
-            state.progress[activeIndex] = activeStep
-
-            if (activeStep.mistakes < state.errorsMaxCount) return
-
-            this.next(state)
-        },
+        next: redusers.next,
+        mistake: redusers.mistake,
         check(state) {
-            if (state.selectedLetter === state.activeLetter) {
-                this.next(state)
+            const origState = original(state)
+            if (origState!.selectedLetter === origState!.activeLetter) {
+                redusers.next(state)
             } else {
-                this.mistake(state)
+                redusers.mistake(state)
             }
-            this.resetSelectedLetter(state)
+            redusers.resetSelectedLetter(state)
         },
         setSelectedLetter(state, action: PayloadAction<LetterType>) {
             state.selectedLetter = action.payload
         },
-        resetSelectedLetter(state) {
-            state.selectedLetter = undefined
-        },
+        resetSelectedLetter: redusers.resetSelectedLetter,
     },
 })
 

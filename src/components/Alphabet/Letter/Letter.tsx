@@ -7,11 +7,13 @@ export function Letter({
     letter,
     onClick,
     className,
+    classNameActive,
     isActive,
 }: {
     letter: LetterType
     onClick?: (letter: LetterType) => void
     className?: string
+    classNameActive?: string
     isActive?: boolean
 }) {
     const onClickHandler = useCallback(() => {
@@ -19,7 +21,12 @@ export function Letter({
     }, [letter, onClick])
 
     return (
-        <div className={cn(s.item, {[s.active]: isActive}, className)} onClick={onClickHandler}>
+        <div
+            className={cn(s.item, {[s.active]: isActive}, className, {
+                [classNameActive!]: isActive && classNameActive,
+            })}
+            onClick={onClickHandler}
+        >
             {letter.upper}
         </div>
     )

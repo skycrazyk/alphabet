@@ -1,4 +1,18 @@
+.actions {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.question {
+    background-color: var(--warm-color);
+}
+
 .accept {
+    background-color: var(--second-color);
+}
+
+.accept:disabled {
+    background-color: var(--gray-color);
 }
 
 .btn {
@@ -6,4 +20,12 @@
     height: 10vh;
     width: 100%;
     border: none;
+    font-family: var(--main-font);
+    font-size: 3vw;
+    color: var(--main-color);
+}
+
+.btn:hover:not(:disabled) {
+    filter: brightness(110%);
+    cursor: pointer;
 }
