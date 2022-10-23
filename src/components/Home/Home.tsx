@@ -2,9 +2,11 @@ import {useNavigate, generatePath} from 'react-router-dom'
 import cn from 'classnames'
 import s from './Home.module.css'
 import {alphabet, routes} from '../../utils'
+import {useAppDispatch, training} from '../../store'
 
 export function Home() {
     const navigate = useNavigate()
+    const dispatch = useAppDispatch()
     return (
         <div className={s.home}>
             <div className={s.menu}>
@@ -15,21 +17,22 @@ export function Home() {
                     Алфавит
                 </button>
                 <button
-                    onClick={() =>
-                        navigate(generatePath(routes.train, {letter: alphabet[0].upper}))
-                    }
+                    onClick={() => {
+                        dispatch(training.init(alphabet))
+                        navigate(generatePath(routes.letter))
+                    }}
                     className={cn(s.findLetter, s.btn)}
                 >
                     Найди букву
                 </button>
-                <button
+                {/* <button
                     onClick={() =>
                         navigate(generatePath(routes.train, {letter: alphabet[0].upper}))
                     }
                     className={cn(s.firstLetter, s.btn)}
                 >
                     Первая буква
-                </button>
+                </button> */}
             </div>
         </div>
     )

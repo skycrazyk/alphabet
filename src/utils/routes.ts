@@ -1,5 +1,5 @@
 export const routes = {
     home: '/',
     abc: '/abc/:letter',
-    train: '/train/:letter',
+    letter: '/letter',
 } as const

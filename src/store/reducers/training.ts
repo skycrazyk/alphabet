@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction, createSelector} from '@reduxjs/toolkit'
-import {LetterType} from '../../utils'
+import type {LetterType} from '../../utils'
 import type {RootState} from '../store'
 
 type Step = {
@@ -10,6 +10,7 @@ type Training = {
     finish: boolean
     errorsMaxCount: number
     activeLetter?: LetterType
+    selectedLetter?: LetterType
     alphabet: LetterType[]
     progress: Step[]
 }
@@ -55,17 +56,25 @@ export const trainingSlice = createSlice({
 
             this.next(state)
         },
-        check(state, action: PayloadAction<LetterType>) {
-            if (action.payload === state.activeLetter) {
+        check(state) {
+            if (state.selectedLetter === state.activeLetter) {
                 this.next(state)
             } else {
                 this.mistake(state)
             }
+            this.resetSelectLetter(state)
+        },
+        setSelectLetter(state, action: PayloadAction<LetterType>) {
+            state.selectedLetter = action.payload
+        },
+        resetSelectLetter(state) {
+            state.selectedLetter = undefined
         },
     },
 })
 
-export const {mistake, init, next} = trainingSlice.actions
+export const {mistake, init, next, check, setSelectLetter, resetSelectLetter} =
+    trainingSlice.actions
 
 export const selectProgress = createSelector(
     (state: RootState) => state.training.alphabet,
@@ -99,4 +108,14 @@ export const selectProgress = createSelector(
 
         return computedProgress
     }
+)
+
+export const selectAlphabet = createSelector(
+    (state: RootState) => state.training.alphabet,
+    alphabet => alphabet
+)
+
+export const selectSelectedLetter = createSelector(
+    (state: RootState) => state.training.selectedLetter,
+    selectedLetter => selectedLetter
 )
