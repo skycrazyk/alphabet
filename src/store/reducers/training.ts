@@ -1,4 +1,5 @@
 import {createSlice, PayloadAction, createSelector, original} from '@reduxjs/toolkit'
+import _ from 'lodash'
 import type {LetterType} from '../../utils'
 import type {RootState} from '../store'
 
@@ -58,7 +59,7 @@ const redusers = {
 
 export const trainingSlice = createSlice({
     name: 'training',
-    initialState,
+    initialState: _.cloneDeep(initialState),
     reducers: {
         init(state, action: PayloadAction<LetterType[]>) {
             state.alphabet = action.payload
@@ -79,10 +80,13 @@ export const trainingSlice = createSlice({
             state.selectedLetter = action.payload
         },
         resetSelectedLetter: redusers.resetSelectedLetter,
+        reset() {
+            return _.cloneDeep(initialState)
+        },
     },
 })
 
-export const {mistake, init, next, check, setSelectedLetter, resetSelectedLetter} =
+export const {reset, mistake, init, next, check, setSelectedLetter, resetSelectedLetter} =
     trainingSlice.actions
 
 export const selectProgress = createSelector(

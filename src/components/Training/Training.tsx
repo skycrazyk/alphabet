@@ -4,6 +4,7 @@ import {Alphabet} from './Alphabet/Alphabet'
 import {Actions} from './Actions/Actions'
 import {getStaticPath, getLetterPath} from '../../utils'
 import {useAppSelector, training, useAppDispatch} from '../../store'
+import {useLocation} from 'react-router-dom'
 
 const questionAudioSrc = getStaticPath('/findletter/0.mp3')
 const mistakeAudioSrc = getStaticPath('/mistake/0.mp3')
@@ -64,17 +65,10 @@ export function Training() {
     }, [dispatch])
 
     useEffect(() => {
-        const questionRef = questionAudioRef!.current
-        const mistakeRef = mistakeAudioRef!.current
-        const activeLetterRef = activeLetterAudioRef!.current
-
+        // TODO init
         return () => {
-            questionRef!.currentTime = 0
-            questionRef!.pause()
-            mistakeRef!.currentTime = 0
-            mistakeRef!.pause()
-            activeLetterRef!.currentTime = 0
-            activeLetterRef!.pause()
+            // TODO if inited
+            dispatch(training.reset())
         }
     }, [])
 
