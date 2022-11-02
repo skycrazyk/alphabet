@@ -112,11 +112,16 @@ export const selectProgress = createSelector(
                 isDirty,
                 isSuccess,
                 letter,
+                step,
             }
         })
 
         return computedProgress
     }
+)
+
+export const selectActiveStep = createSelector(selectProgress, progress =>
+    progress.find(s => s.isActive)
 )
 
 export const selectAlphabet = createSelector(
