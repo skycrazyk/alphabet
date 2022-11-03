@@ -2,11 +2,10 @@ import {useNavigate, generatePath} from 'react-router-dom'
 import cn from 'classnames'
 import s from './Home.module.css'
 import {alphabet, routes} from '../../utils'
-import {useAppDispatch, training} from '../../store'
 
 export function Home() {
     const navigate = useNavigate()
-    const dispatch = useAppDispatch()
+
     return (
         <div className={s.home}>
             <div className={s.menu}>
@@ -18,7 +17,6 @@ export function Home() {
                 </button>
                 <button
                     onClick={() => {
-                        dispatch(training.init(alphabet))
                         navigate(generatePath(routes.letter))
                     }}
                     className={cn(s.findLetter, s.btn)}
