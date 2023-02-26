@@ -70,7 +70,10 @@ export function Study() {
             <audio
                 ref={audio}
                 preload="auto"
-                src={getLetterPath(activeLetter?.upper, `${activeLetter?.words[0]}.mp3`)}
+                src={getLetterPath(
+                    activeLetter?.upper,
+                    `${activeLetter?.upper}_${activeLetter?.words[0]}.mp3`
+                )}
             />
         </div>
     )
