@@ -1,43 +1,38 @@
 import {parallelLimit, AsyncResultCallback} from 'async'
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import type {LetterType} from '../../utils'
-import {alphabet} from '../../utils'
+import {
+    alphabet,
+    getLetterSoundPath,
+    getLetterWordImagePath,
+    getLetterWordSoundPath,
+} from '../../utils'
 
-type LetterAccet = Pick<LetterType, 'upper' | 'lower'> & {
-    words: {
-        text: string
-        sound: Blob
-        image: Blob
-    }[]
-}
+// TODO оформить в виде хранилища
+// let dataResp = await fetch('https://file-examples.com/storage/fe00fb1b6463fa60ca184a7/2017/11/file_example_MP3_700KB.mp3')
+// let dataBlob = await dataResp.blob()
+// let dataUrl = URL.createObjectURL(dataBlob)
+const alphabetPaths = alphabet.reduce((acc, letter, idx) => {
+    const letterSound = getLetterSoundPath(letter.upper)
+    const wordsSounds = letter.words?.map(w => getLetterWordSoundPath(letter.upper, w))
+    const wordsImages = letter.words?.map(w => getLetterWordImagePath(letter.upper, w))
 
-type Assets = {
-    alphabet: LetterAccet[]
-}
+    return [...acc, letterSound, ...(wordsSounds || []), ...(wordsImages || [])]
+}, [] as string[])
+
+console.log(alphabetPaths)
+
+type Assets = Record<string, string>
 
 export const assetsApi = createApi({
     reducerPath: 'assetsApi',
     baseQuery: fetchBaseQuery({baseUrl: '/'}),
     endpoints: builder => ({
-        getAssets: builder.query<Assets, void>({
-            async queryFn(arg, api, extraOptions, baseQuery) {
-                const assets = {} as Assets
-
-                const alphabetRequests = alphabet.reduce((acc, letter, idx) => {
-                    // const imageCb = () =>
-                    return acc
-                }, [] as ((cb: AsyncResultCallback<any>) => void)[])
-
-                await parallelLimit([], 1)
+        fetchAssets: builder.query<Assets, void>({
+            async queryFn() {
+                const assets = (await parallelLimit([], 1)) as Assets
 
                 return {data: assets}
-                // const randomVal = Math.random()
-                // if (randomVal < 0.45) {
-                //     return {data: 'heads'}
-                // }
-                // if (randomVal < 0.9) {
-                //     return {data: 'tails'}
-                // }
+
                 // return {
                 //     error: {
                 //         status: 500,

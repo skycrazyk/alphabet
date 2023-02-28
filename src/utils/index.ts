@@ -1,4 +1,7 @@
 export * from './alphabet'
 export * from './getStaticPath'
 export * from './getLetterPath'
+export * from './getLetterSoundPath'
+export * from './getLetterWordImagePath'
+export * from './getLetterWordSoundPath'
 export * from './routes'
