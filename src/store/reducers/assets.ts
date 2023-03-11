@@ -1,25 +1,5 @@
-import {parallelLimit, AsyncResultCallback} from 'async'
+import {parallelLimit, retry} from 'async'
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import {
-    alphabet,
-    getLetterSoundPath,
-    getLetterWordImagePath,
-    getLetterWordSoundPath,
-} from '../../utils'
-
-// TODO оформить в виде хранилища
-// let dataResp = await fetch('https://file-examples.com/storage/fe00fb1b6463fa60ca184a7/2017/11/file_example_MP3_700KB.mp3')
-// let dataBlob = await dataResp.blob()
-// let dataUrl = URL.createObjectURL(dataBlob)
-const alphabetPaths = alphabet.reduce((acc, letter, idx) => {
-    const letterSound = getLetterSoundPath(letter.upper)
-    const wordsSounds = letter.words?.map(w => getLetterWordSoundPath(letter.upper, w))
-    const wordsImages = letter.words?.map(w => getLetterWordImagePath(letter.upper, w))
-
-    return [...acc, letterSound, ...(wordsSounds || []), ...(wordsImages || [])]
-}, [] as string[])
-
-console.log(alphabetPaths)
 
 type Assets = Record<string, string>
 
@@ -27,20 +7,50 @@ export const assetsApi = createApi({
     reducerPath: 'assetsApi',
     baseQuery: fetchBaseQuery({baseUrl: '/'}),
     endpoints: builder => ({
-        fetchAssets: builder.query<Assets, void>({
-            async queryFn() {
-                const assets = (await parallelLimit([], 1)) as Assets
+        fetchAssets: builder.query<Assets, string[]>({
+            async queryFn(arg) {
+                try {
+                    const assets = await parallelLimit<[string, string], [string, string][], Error>(
+                        arg.map(
+                            p => fetchCb =>
+                                retry(
+                                    {
+                                        times: 10,
+                                        interval: retryCount => 100 * Math.pow(2, retryCount),
+                                    },
+                                    retryCb =>
+                                        fetch(p)
+                                            .then(res =>
+                                                res
+                                                    .blob()
+                                                    .then(b => {
+                                                        const url = URL.createObjectURL(b)
+                                                        retryCb(null, [p, url])
+                                                    })
+                                                    .catch(e =>
+                                                        fetchCb(new Error('Creating blob error'))
+                                                    )
+                                            )
+                                            .catch(e => retryCb(new Error('Fetching error'))),
+                                    fetchCb
+                                )
+                        ),
+                        3
+                    )
 
-                return {data: assets}
-
-                // return {
-                //     error: {
-                //         status: 500,
-                //         statusText: 'Internal Server Error',
-                //         data: "Coin landed on it's edge!",
-                //     },
-                // }
+                    return {data: Object.fromEntries(assets)}
+                } catch (e) {
+                    return {
+                        error: {
+                            status: (e as any)?.status || 0,
+                            statusText: (e as Error)?.message || 'Unknown error',
+                            data: (e as Error)?.message || 'Unknown error',
+                        },
+                    }
+                }
             },
         }),
     }),
 })
+
+export const {useFetchAssetsQuery, endpoints} = assetsApi
