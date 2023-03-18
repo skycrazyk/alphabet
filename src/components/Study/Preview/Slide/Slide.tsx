@@ -1,4 +1,5 @@
 import cn from 'classnames'
+import {useAssets} from '../../../../hooks'
 import {LetterType, getLetterPath} from '../../../../utils'
 import s from './Slide.module.css'
 
@@ -17,6 +18,7 @@ export function Slide({
 }) {
     const word = letter.words[0]?.split('')
     const firstEntranceIdx = word?.findIndex(l => l.toUpperCase() === letter.upper)
+    const {asset} = useAssets()
     return (
         <div className={s.slide}>
             <div className={s.upper}>
@@ -32,7 +34,7 @@ export function Slide({
                 ))}
             </div>
             <div className={s.image}>
-                <img src={getLetterPath(letter.upper, `${letter.words[0]}.webp`)} />
+                <img src={asset(getLetterPath(letter.upper, `${letter.words[0]}.webp`))} />
             </div>
         </div>
     )

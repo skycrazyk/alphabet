@@ -2,12 +2,10 @@ import {Routes, Route} from 'react-router-dom'
 import {Training} from '../Training/Training'
 import {Study} from '../Study/Study'
 import {Home} from '../Home/Home'
-import {useLoadAccets} from '../../hooks'
+import {useAssets} from '../../hooks'
 
 function App() {
-    const {data, isLoading} = useLoadAccets()
-
-    console.log('DATA:', data)
+    const {isLoading} = useAssets()
 
     return isLoading ? (
         <>Loading</>

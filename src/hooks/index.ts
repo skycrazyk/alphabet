@@ -1,1 +1,2 @@
-export * from './useLoadAssets'
+export * from './useAssets'
+export * from './useAudio'

@@ -5,6 +5,7 @@ import {
     getLetterWordSoundPath,
 } from '../utils'
 import {accets} from '../store'
+import {useCallback} from 'react'
 
 const alphabetPaths = alphabet.reduce((acc, letter, idx) => {
     const letterSound = getLetterSoundPath(letter.upper)
@@ -16,11 +17,8 @@ const alphabetPaths = alphabet.reduce((acc, letter, idx) => {
 
 const allPaths = [...alphabetPaths]
 
-export function useLoadAccets() {
-    return accets.useFetchAssetsQuery(allPaths)
-}
-
-export function useAccetUrl(path: string) {
-    const {data} = accets.useFetchAssetsQuery(allPaths)
-    return data?.[path] ?? ''
+export function useAssets() {
+    const assetsData = accets.useFetchAssetsQuery(allPaths)
+    const asset = useCallback((url: string) => assetsData.data?.[url], [assetsData.data])
+    return {asset, ...assetsData}
 }
