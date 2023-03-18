@@ -3,6 +3,7 @@ import {
     getLetterSoundPath,
     getLetterWordImagePath,
     getLetterWordSoundPath,
+    getStaticPath,
 } from '../utils'
 import {accets} from '../store'
 import {useCallback} from 'react'
@@ -15,7 +16,10 @@ const alphabetPaths = alphabet.reduce((acc, letter, idx) => {
     return [...acc, letterSound, ...(wordsSounds || []), ...(wordsImages || [])]
 }, [] as string[])
 
-const allPaths = [...alphabetPaths]
+export const questionAudioSrc = getStaticPath('/findletter/0.mp3')
+export const mistakeAudioSrc = getStaticPath('/mistake/0.mp3')
+
+const allPaths = [...alphabetPaths, questionAudioSrc, mistakeAudioSrc]
 
 export function useAssets() {
     const assetsData = accets.useFetchAssetsQuery(allPaths)

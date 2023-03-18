@@ -21,17 +21,22 @@ export function useAudio(src: Src, options?: {autoplay?: boolean}) {
 
     const ref = useRef<HTMLAudioElement>(null)
 
-    const play = useCallback(() => setIsPlaying(true), [])
+    const play = useCallback(() => {
+        if (ref.current) {
+            ref.current.currentTime = 0
+        }
+        setTrack(initTrack(src))
+        setIsPlaying(true)
+    }, [src])
+
     const stop = useCallback(() => setIsPlaying(false), [])
 
     useEffect(() => {
         const audioRef = ref.current
-        const onloadstart = () => {
-            setIsCanPlay(false)
-        }
-        const oncanplaythrough = () => {
-            setIsCanPlay(true)
-        }
+        if (!audioRef) return
+
+        const onloadstart = () => setIsCanPlay(false)
+        const oncanplaythrough = () => setIsCanPlay(true)
         const onended = () => {
             if (typeof src === 'string' || (Array.isArray(src) && track === src.length - 1)) {
                 // Если отыграл последний файл - останавливаем воспроизведение.
@@ -45,25 +50,27 @@ export function useAudio(src: Src, options?: {autoplay?: boolean}) {
                 setTrack((track as number) + 1)
             }
         }
-        audioRef?.addEventListener('loadstart', onloadstart)
-        audioRef?.addEventListener('canplaythrough', oncanplaythrough)
-        audioRef?.addEventListener('ended', onended)
+        audioRef.addEventListener('loadstart', onloadstart)
+        audioRef.addEventListener('canplaythrough', oncanplaythrough)
+        audioRef.addEventListener('ended', onended)
 
         return () => {
-            audioRef?.removeEventListener('loadstart', onloadstart)
-            audioRef?.removeEventListener('canplaythrough', oncanplaythrough)
-            audioRef?.removeEventListener('ended', onended)
+            audioRef.removeEventListener('loadstart', onloadstart)
+            audioRef.removeEventListener('canplaythrough', oncanplaythrough)
+            audioRef.removeEventListener('ended', onended)
         }
     }, [setTrack, src, track])
 
     useEffect(() => {
+        if (!ref.current) return
+
         if (isPlaying && isCanPlay) {
-            ref.current?.play()
+            ref.current.currentTime = 0
+            ref.current.play()
         }
 
-        if (!isPlaying && ref.current) {
+        if (!isPlaying) {
             ref.current.pause()
-            ref.current.currentTime = 0
         }
     }, [isPlaying, isCanPlay, track])
 
