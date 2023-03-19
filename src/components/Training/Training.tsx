@@ -2,7 +2,7 @@ import {useCallback, useEffect, useMemo} from 'react'
 import s from './Training.module.css'
 import {Alphabet} from './Alphabet/Alphabet'
 import {Actions} from './Actions/Actions'
-import {getLetterPath} from '../../utils'
+import {getLetterPath, shuffle} from '../../utils'
 import {useAppSelector, training, useAppDispatch} from '../../store'
 import {alphabet} from '../../utils'
 import {
@@ -32,6 +32,7 @@ export function Training() {
 
     const questionCtrl = useAudio(questionPlayList)
 
+    // TODO воспроизведение имени динозавра
     const firstQuestionPlayList = useMemo(
         () => [...(previousStep?.isPass ? [successAudioSrc] : []), ...questionPlayList],
         [activeLetter?.upper, asset]
@@ -61,7 +62,7 @@ export function Training() {
     }, [dispatch])
 
     useEffect(() => {
-        dispatch(training.init(alphabet))
+        dispatch(training.init(shuffle(alphabet)))
         return () => {
             dispatch(training.reset())
         }
