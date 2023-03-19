@@ -100,18 +100,19 @@ export const selectProgress = createSelector(
         const computedProgress = alphabet.map((letter, index) => {
             const step = progress[index]
             const isMistakes = !!step?.mistakes
-            const isPass = step?.mistakes < errorsMaxCount
-            const isFail = !isPass
             const isActive = letter === activeLetter
             const isDirty = activeIndex === -1
             const isSuccess = isDirty && !isMistakes
+            const isPass =
+                (step?.mistakes === undefined || step?.mistakes <= errorsMaxCount) &&
+                isDirty &&
+                !isActive
 
             if (isActive) activeIndex = index
 
             return {
                 isMistakes,
                 isPass,
-                isFail,
                 isActive,
                 isDirty,
                 isSuccess,
@@ -127,6 +128,12 @@ export const selectProgress = createSelector(
 export const selectActiveStep = createSelector(selectProgress, progress =>
     progress.find(s => s.isActive)
 )
+
+export const selectPreviousStep = createSelector(selectProgress, progress => {
+    const activeIndex = progress.findIndex(s => s.isActive)
+    if (activeIndex === 0) return
+    return progress[activeIndex - 1]
+})
 
 export const selectAlphabet = createSelector(
     (state: RootState) => state.training.alphabet,

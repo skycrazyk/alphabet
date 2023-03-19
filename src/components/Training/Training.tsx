@@ -5,13 +5,22 @@ import {Actions} from './Actions/Actions'
 import {getLetterPath} from '../../utils'
 import {useAppSelector, training, useAppDispatch} from '../../store'
 import {alphabet} from '../../utils'
-import {useAssets, mistakeAudioSrc, questionAudioSrc, useAudio, Audio} from '../../hooks'
+import {
+    useAssets,
+    mistakeAudioSrc,
+    questionAudioSrc,
+    successAudioSrc,
+    useAudio,
+    Audio,
+} from '../../hooks'
 
 export function Training() {
     const {asset} = useAssets()
+    const dispatch = useAppDispatch()
     const activeLetter = useAppSelector(training.selectActiveLetter)
     const selectedLetter = useAppSelector(training.selectSelectedLetter)
     const activeStep = useAppSelector(training.selectActiveStep)
+    const previousStep = useAppSelector(training.selectPreviousStep)
 
     const questionPlayList = useMemo(
         () => [
@@ -23,6 +32,13 @@ export function Training() {
 
     const questionCtrl = useAudio(questionPlayList)
 
+    const firstQuestionPlayList = useMemo(
+        () => [...(previousStep?.isPass ? [successAudioSrc] : []), ...questionPlayList],
+        [activeLetter?.upper, asset]
+    )
+
+    const firstQuestionCtrl = useAudio(firstQuestionPlayList)
+
     const mistakePlayList = useMemo(
         () => [asset(mistakeAudioSrc)!, ...questionPlayList],
         [questionPlayList, asset]
@@ -30,16 +46,12 @@ export function Training() {
 
     const mistakeCtrl = useAudio(mistakePlayList)
 
-    const dispatch = useAppDispatch()
+    useEffect(() => {
+        firstQuestionCtrl.play()
+    }, [firstQuestionPlayList, firstQuestionCtrl.play])
 
     useEffect(() => {
-        questionCtrl.play()
-    }, [questionPlayList, questionCtrl.play])
-
-    useEffect(() => {
-        const mistakes = activeStep?.step?.mistakes
-
-        if (mistakes) {
+        if (activeStep?.step?.mistakes) {
             mistakeCtrl.play()
         }
     }, [activeStep?.step?.mistakes])
@@ -65,6 +77,7 @@ export function Training() {
             />
             <Audio {...mistakeCtrl.props} />
             <Audio {...questionCtrl.props} />
+            <Audio {...firstQuestionCtrl.props} />
         </div>
     )
 }
