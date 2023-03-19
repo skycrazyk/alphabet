@@ -64,6 +64,7 @@ export const trainingSlice = createSlice({
         init(state, action: PayloadAction<LetterType[]>) {
             state.alphabet = action.payload
             state.activeLetter = action.payload[0]
+            state.finish = false
         },
         next: redusers.next,
         mistake: redusers.mistake,
@@ -97,12 +98,13 @@ export const selectProgress = createSelector(
     (alphabet, activeLetter, progress, errorsMaxCount) => {
         let activeIndex = -1
 
-        const computedProgress = alphabet.map((letter, index) => {
+        const computedProgress = alphabet.map((letter, index, self) => {
             const step = progress[index]
             const isMistakes = !!step?.mistakes
             const isActive = letter === activeLetter
             const isDirty = activeIndex === -1
             const isSuccess = isDirty && !isMistakes
+
             const isPass =
                 (step?.mistakes === undefined || step?.mistakes <= errorsMaxCount) &&
                 isDirty &&
@@ -110,12 +112,15 @@ export const selectProgress = createSelector(
 
             if (isActive) activeIndex = index
 
+            const isLast = index === self.length - 1
+
             return {
                 isMistakes,
                 isPass,
                 isActive,
                 isDirty,
                 isSuccess,
+                isLast,
                 letter,
                 step,
             }
@@ -149,3 +154,5 @@ export const selectActiveLetter = createSelector(
     (state: RootState) => state.training.activeLetter,
     activeLetter => activeLetter
 )
+
+export const selectFinish = (state: RootState) => state.training.finish

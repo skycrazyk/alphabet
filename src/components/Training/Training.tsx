@@ -1,4 +1,5 @@
-import {useCallback, useEffect, useMemo} from 'react'
+import {useCallback, useEffect, useMemo, useRef} from 'react'
+import {Fireworks, FireworksHandlers} from '@fireworks-js/react'
 import s from './Training.module.css'
 import {Alphabet} from './Alphabet/Alphabet'
 import {Actions} from './Actions/Actions'
@@ -12,6 +13,7 @@ import {
     successAudioSrc,
     useAudio,
     Audio,
+    musicAudioSrc,
 } from '../../hooks'
 
 export function Training() {
@@ -21,6 +23,14 @@ export function Training() {
     const selectedLetter = useAppSelector(training.selectSelectedLetter)
     const activeStep = useAppSelector(training.selectActiveStep)
     const previousStep = useAppSelector(training.selectPreviousStep)
+    const isFinish = useAppSelector(training.selectFinish)
+    const finishMusicCtrl = useAudio(musicAudioSrc)
+
+    useEffect(() => {
+        if (isFinish) {
+            finishMusicCtrl.play()
+        }
+    }, [isFinish, finishMusicCtrl.play])
 
     const questionPlayList = useMemo(
         () => [
@@ -69,16 +79,31 @@ export function Training() {
     }, [dispatch])
 
     return (
-        <div className={s.wrap}>
-            <Alphabet />
-            <Actions
-                onQuestionClick={questionCtrl.play}
-                onAcceptClick={onAcceptClick}
-                selectedLetter={selectedLetter}
-            />
-            <Audio {...mistakeCtrl.props} />
-            <Audio {...questionCtrl.props} />
-            <Audio {...firstQuestionCtrl.props} />
-        </div>
+        <>
+            <div className={s.wrap}>
+                <Alphabet />
+                <Actions
+                    onQuestionClick={questionCtrl.play}
+                    onAcceptClick={onAcceptClick}
+                    selectedLetter={selectedLetter}
+                />
+                <Audio {...mistakeCtrl.props} />
+                <Audio {...questionCtrl.props} />
+                <Audio {...firstQuestionCtrl.props} />
+                <Audio {...finishMusicCtrl.props} />
+            </div>
+            {isFinish && (
+                <Fireworks
+                    options={{opacity: 0.5}}
+                    style={{
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        position: 'fixed',
+                    }}
+                />
+            )}
+        </>
     )
 }

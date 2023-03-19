@@ -19,8 +19,15 @@ const alphabetPaths = alphabet.reduce((acc, letter, idx) => {
 export const questionAudioSrc = getStaticPath('/findletter/0.mp3')
 export const mistakeAudioSrc = getStaticPath('/mistake/0.mp3')
 export const successAudioSrc = getStaticPath('/success/2.mp3')
+export const musicAudioSrc = getStaticPath('/music.mp3')
 
-const allPaths = [...alphabetPaths, questionAudioSrc, mistakeAudioSrc, successAudioSrc]
+const allPaths = [
+    ...alphabetPaths,
+    questionAudioSrc,
+    mistakeAudioSrc,
+    successAudioSrc,
+    musicAudioSrc,
+]
 
 export function useAssets() {
     const assetsData = accets.useFetchAssetsQuery(allPaths)
